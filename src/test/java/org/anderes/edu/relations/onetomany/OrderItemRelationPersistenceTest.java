@@ -17,7 +17,7 @@ import org.junit.Test;
 public class OrderItemRelationPersistenceTest {
 
     private EntityManager entityManager;
-    private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("testDB");
+    private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("puEclipselink");
     
     @Before
     public void setUp() throws Exception {
