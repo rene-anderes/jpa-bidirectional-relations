@@ -89,10 +89,11 @@ public class StudentModuleRelationPersistenceTest {
         assertThat(module.getStudents().size(), is(1));
     }
     
-    /* /------------------ Vergleich zwischen PERIST und MERGE --------------------------------- */
-    
     /**
-     * Einem bestehenden Module einen neuen Studenten hinzufügen
+     * Einem bestehenden Module einen neuen Studenten hinzufügen und
+     * den Studenten speichern.
+     * </p>
+     * Funktioniert mit nur mit {@code persist}
      */
     @Test
     public void shouldBeAddNewStudentToExistsModule() {
@@ -109,6 +110,26 @@ public class StudentModuleRelationPersistenceTest {
         assertThat(student.getModules().size(), is(1));
         assertThat(module.getStudents().size(), is(2));
     }
+    
+    /**
+     * Einem bestehenden Module einen neuen Studenten hinzufügen und
+     * den Studenten mittels {@code merge} persistieren.
+     * </p>
+     * Funktioniert mit {@code merge} nicht: "... was not marked cascade PERSIST..."
+     */
+    @Test(expected = RollbackException.class)
+    public void shouldBeNotAddNewStudentToExistsModule() {
+        final Student student = new Student("Jean", "NoGo");
+        final Module module = entityManager.find(Module.class, 8001L);
+        
+        module.addStudent(student);
+        
+        entityManager.getTransaction().begin();
+        entityManager.merge(student);
+        entityManager.getTransaction().commit();
+    }
+    
+    /* /------------------ Vergleich zwischen PERIST und MERGE --------------------------------- */
     
     /**
      * Ein Module wird gelöscht und alle Beziehungen in der Zwischentabelle
