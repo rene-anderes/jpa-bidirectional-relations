@@ -67,7 +67,7 @@ public class Student {
         module.addStudent(this);
     }
     
-    public void internalAddModule(Module module) {
+    void internalAddModule(Module module) {
         modules.add(module);
     }
 
@@ -75,7 +75,7 @@ public class Student {
         module.removeStudent(this);
     }
     
-    public void internalRemoveModule(Module module) {
+    void internalRemoveModule(Module module) {
         modules.remove(module);
     }
     

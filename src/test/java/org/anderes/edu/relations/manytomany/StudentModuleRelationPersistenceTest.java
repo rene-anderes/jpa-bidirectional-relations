@@ -144,6 +144,11 @@ public class StudentModuleRelationPersistenceTest {
         entityManager.remove(module);
         entityManager.getTransaction().commit();
         
+        assertThat(entityManager.contains(module), is(false));
+        entityManager.getTransaction().begin();
+        entityManager.persist(module);
+        entityManager.getTransaction().commit();
+        
         final Student hancock = entityManager.find(Student.class, 9002L);
         final Student wonder = entityManager.find(Student.class, 9003L);
         

@@ -56,11 +56,11 @@ public class Order {
         orderItem.setOrder(null);
     }
     
-    public void internalRemoveOrderItem(OrderItem orderItem) {
+    void internalRemoveOrderItem(OrderItem orderItem) {
         items.remove(orderItem);
     }
 
-    public void internalAddOrderItem(OrderItem orderItem) {
+    void internalAddOrderItem(OrderItem orderItem) {
         items.add(orderItem);
     }
     
