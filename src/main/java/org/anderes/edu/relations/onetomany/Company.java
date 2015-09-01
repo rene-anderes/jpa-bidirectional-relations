@@ -1,6 +1,5 @@
 package org.anderes.edu.relations.onetomany;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,9 +13,7 @@ import javax.persistence.PreRemove;
 
 
 @Entity
-public class Company implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Company {
 
 	@Id
 	@GeneratedValue

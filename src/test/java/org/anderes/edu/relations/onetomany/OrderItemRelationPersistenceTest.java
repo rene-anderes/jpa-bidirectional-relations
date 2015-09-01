@@ -84,17 +84,14 @@ public class OrderItemRelationPersistenceTest {
     /**
      * Eine neue Bestellposition (OrderItem) einer bestehenden
      * Bestellung (Order) hinzufügen und die Bestellung persistieren.
-     * </p>
-     * Funktioniert mit {@code merge()} und {@code persist()} 
      */
     @Test
     public void shouldBeAddOneNewOrderItem() {
+        entityManager.getTransaction().begin();
         final Order order = entityManager.find(Order.class, 5002L);
         final OrderItem orderItem = new OrderItem("Heckenschere");
         order.addOrderItem(orderItem);
-        
-        entityManager.getTransaction().begin();
-        entityManager.persist(order);
+    
         entityManager.getTransaction().commit();
         
         assertThat(order.getOrderItems().size(), is(3));

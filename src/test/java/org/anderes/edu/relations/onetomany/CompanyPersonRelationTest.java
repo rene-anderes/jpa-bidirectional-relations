@@ -53,14 +53,13 @@ public class CompanyPersonRelationTest {
      */
     @Test
     public void shouldBeFireOneEmployee() {
+        entityManager.getTransaction().begin();
         final Company microsoft = entityManager.find(Company.class, 10003L);
         final Person billGates = entityManager.find(Person.class, 2004L);
         assertThat(microsoft.getEmployees().size(), is(3));
 
         microsoft.removeEmployee(billGates);
         
-        entityManager.getTransaction().begin();
-        entityManager.persist(microsoft);
         entityManager.getTransaction().commit();
         
         assertThat(billGates.getCompany(), is(nullValue()));

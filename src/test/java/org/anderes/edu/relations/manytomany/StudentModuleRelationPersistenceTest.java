@@ -92,8 +92,6 @@ public class StudentModuleRelationPersistenceTest {
     /**
      * Einem bestehenden Module einen neuen Studenten hinzufügen und
      * den Studenten speichern.
-     * </p>
-     * Funktioniert mit nur mit {@code persist}
      */
     @Test
     public void shouldBeAddNewStudentToExistsModule() {
@@ -142,11 +140,6 @@ public class StudentModuleRelationPersistenceTest {
         
         entityManager.getTransaction().begin();
         entityManager.remove(module);
-        entityManager.getTransaction().commit();
-        
-        assertThat(entityManager.contains(module), is(false));
-        entityManager.getTransaction().begin();
-        entityManager.persist(module);
         entityManager.getTransaction().commit();
         
         final Student hancock = entityManager.find(Student.class, 9002L);
